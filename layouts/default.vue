@@ -81,6 +81,11 @@ export default {
           title: 'Inspire',
           to: '/inspire',
         },
+        {
+          icon: 'mdi-controller',
+          title: 'Game 1',
+          to: '/game-1',
+        },
       ],
       miniVariant: false,
       right: true,
