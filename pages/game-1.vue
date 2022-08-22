@@ -16,25 +16,26 @@
       >
       <br />
       <div v-if="game_active">
-        <div class="d-flex justify-space-around">
+        <div>
           <div class="d-flex justify-space-around">
-            <v-btn
+            <v-hover
               v-if="human_choice === ''"
-              @click="humanTurn(choice)"
+              value="true"
               v-for="choice in choices"
-              light
-              rounded
             >
-              {{ choice }}
-            </v-btn>
-            <v-btn v-if="human_choice !== ''" light rounded>
-              {{ human_choice }}
-            </v-btn>
-          </div>
-          <div v-if="computer_choice !== ''">
-            <v-btn light rounded>
-              {{ computer_choice }}
-            </v-btn>
+              <v-card @click="humanTurn(choice)" :class="{ 'on-hover': hover }">
+                <v-card-title>{{ choice }}</v-card-title>
+                <v-icon large>{{ icons[choice] }}</v-icon>
+              </v-card>
+            </v-hover>
+            <v-card v-if="human_choice !== ''">
+              <v-card-title>{{ human_choice }}</v-card-title>
+              <v-icon large>{{ icons[human_choice] }}</v-icon>
+            </v-card>
+            <v-card v-if="computer_choice !== ''">
+              <v-card-title>{{ computer_choice }}</v-card-title>
+              <v-icon large>{{ icons[computer_choice] }}</v-icon>
+            </v-card>
           </div>
         </div>
         <div class="my-5" v-if="result !== ''">{{ result }}</div>
@@ -56,6 +57,11 @@ export default {
       human_choice: '',
       computer_choice: '',
       choices: ['paper', 'scissors', 'rock'],
+      icons: {
+        paper: 'mdi-note',
+        scissors: 'mdi-content-cut',
+        rock: 'mdi-google-cloud',
+      },
       result: '',
     }
   },
